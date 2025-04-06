@@ -16,6 +16,17 @@ $pink: #f2dede;
 $dark-pink: #eed3d7;
 $red: #b94a48;
 
+// Grays
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
 ////////////
 // Alerts //
 ////////////
@@ -103,6 +114,8 @@ body {
 }
 aside {
   #member-information {
+    width: 20rem;
+
     .avatar {
       display: block;
       overflow: hidden;
@@ -116,6 +129,7 @@ aside {
   #navigation {
     margin-bottom: 0;
     padding: 0;
+    width: 20rem;
     list-style: none;
     border-radius: 0.25rem;
 
@@ -144,9 +158,43 @@ aside {
   z-index: 1050;
   background-color: $dark;
 
-  .navbar {
-    min-height: 50px;
-    margin-bottom: 0;
+  #searchbar {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    padding-right: 1rem;
+
+    .form-control {
+      width: 100%;
+      padding: 0.3rem 1rem;
+      border: 1px solid $gray-600;
+      border-radius: 6px;
+      color: $white;
+      background-color: $dark;
+      transition:
+        border-color 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out;
+
+      &::placeholder {
+        color: $gray-600;
+      }
+
+      &:focus {
+        border-color: $primary;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba($primary, 0.25);
+      }
+    }
+  }
+
+  .dropdown-menu {
+    li {
+      a {
+        &:hover {
+          background-color: $primary;
+        }
+      }
+    }
   }
 }
 .main {
