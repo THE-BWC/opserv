@@ -1,6 +1,7 @@
 from django.db import models
 
 from config.settings import base
+from opserv.games.models import Game
 
 user_model = base.AUTH_USER_MODEL
 
@@ -37,6 +38,7 @@ class Operation(models.Model):
         related_name="operation_leader",
         on_delete=models.PROTECT,
     )
+    game_id = models.ForeignKey(Game, on_delete=models.PROTECT)
     aar_notes = models.TextField(blank=True)
     is_opsec = models.BooleanField(default=False)
     discord_voice_channel = models.CharField(max_length=255, blank=True)
