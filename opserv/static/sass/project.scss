@@ -34,3 +34,134 @@ $red: #b94a48;
   border-color: $dark-pink;
   color: $red;
 }
+
+////////////
+// Webkit //
+////////////
+* {
+  scrollbar-color: #901919 #212121;
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+::-webkit-scrollbar-track-piece {
+  background: #2d2d2d;
+}
+::-webkit-scrollbar-thumb {
+  background: #810900;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ab0900;
+}
+::-webkit-scrollbar-corner {
+  background: #2d2d2d;
+}
+::-webkit-resizer {
+  background: #2d2d2d;
+}
+
+///////////////////
+// Miscellaneous //
+///////////////////
+@each $color, $value in $grays {
+  .text-gray-#{$color} {
+    color: $value;
+  }
+}
+html {
+  font-size: 16px;
+  direction: ltr;
+}
+body {
+  direction: ltr;
+  height: 100%;
+  overflow-y: scroll;
+  position: relative;
+  background: url('https://the-bwc.com/PAO/Forum_Header_Background.png')
+    no-repeat fixed center top;
+  background-size: cover;
+}
+.text-muted li p {
+  color: var(--bs-secondary-color);
+}
+.text-muted li p b {
+  color: var(--bs-body-color);
+}
+.text-small {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+aside {
+  #member-information {
+    .avatar {
+      display: block;
+      overflow: hidden;
+    }
+
+    div p {
+      margin: 0;
+    }
+  }
+
+  #navigation {
+    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+
+    li {
+      margin-bottom: 0;
+      padding: 0;
+      list-style: none;
+
+      a {
+        color: $white;
+        text-decoration: none;
+        padding: 10px 15px;
+        display: block;
+        border-radius: 0.25rem;
+
+        &:hover {
+          background-color: $primary;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+.main-header {
+  position: relative;
+  z-index: 1050;
+  background-color: $dark;
+
+  .navbar {
+    min-height: 50px;
+    margin-bottom: 0;
+  }
+}
+.main {
+  min-height: calc(100vh - 132px);
+
+  .center-card {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+}

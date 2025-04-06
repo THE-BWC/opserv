@@ -1,0 +1,42 @@
+<header class="main-header p-2">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <div class="d-flex align-items-center link-body-emphasis text-decoration-none me-lg-auto mb-1">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="https://pao.the-bwc.com/BannerStandard.png"
+               alt="BWC Logo"
+               height="40px" />
+        </a>
+      </div>
+      <form class="col-12 col-lg-auto me-lg-3 mb-1" role="search">
+        <input class="form-control"
+               type="search"
+               placeholder="Search..."
+               aria-label="search" />
+      </form>
+      <div class="dropdown text-end">
+        <a class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+           href="#"
+           data-bs-toggle="dropdown"
+           aria-expanded="false">
+          <img class="rounded-circle"
+               src="https://github.com/mdo.png"
+               alt=""
+               width="32"
+               height="32" />
+        </a>
+        <ul class="dropdown-menu text-small">
+          <li>
+            <a class="dropdown-item" href="#">Settings</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
