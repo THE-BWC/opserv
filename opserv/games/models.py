@@ -15,8 +15,8 @@ class Game(models.Model):
     icon = models.ImageField(upload_to="games/")
     retired = models.BooleanField(default=False)
     opsec = models.BooleanField(default=False)
-    opsec_user_group = models.IntegerField(null=True, blank=True)
-    opsec_discord_role = models.CharField(max_length=255, blank=True)
+    opsec_user_group = models.IntegerField(null=True, blank=True, default=None)
+    opsec_discord_role = models.CharField(max_length=255, blank=True, default="")
 
     def __str__(self):
         return self.name
