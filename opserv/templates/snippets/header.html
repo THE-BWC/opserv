@@ -1,43 +1,26 @@
-<header class="main-header p-2">
-  <div>
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start px-4">
-      <div class="d-flex align-items-center link-body-emphasis text-decoration-none me-lg-auto mb-1">
-        <a class="navbar-brand" href="{% url 'home' %}">
-          <img src="https://pao.the-bwc.com/BannerStandard.png"
-               alt="BWC Logo"
-               height="40px" />
+<header class="main-header">
+  <nav class="navbar" role="navigation">
+    <div class="container">
+      <div class="float-start">
+        <a class="navbar-brand" href="#">
+          <img src="https://pao.widowmakers.org/BWC_Logo_FRAMED.svg" alt="WidowMakers" height="30">
         </a>
       </div>
-      <form id="searchbar" class="d-flex" role="search">
-        <input class="form-control"
-               type="search"
-               placeholder="Search..."
-               aria-label="Search" />
-      </form>
-      <div class="dropdown text-end">
-        <a class="d-block link-body-emphasis text-decoration-none"
-           href="#"
-           data-bs-toggle="dropdown"
-           data-bs-offset="0, 18"
-           aria-expanded="false">
-          <img class="rounded-circle"
-               src="https://github.com/mdo.png"
-               alt=""
-               width="32"
-               height="32" />
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small">
-          <li>
-            <a class="dropdown-item" href="#">Settings</a>
+      <div class="float-end">
+        <ul class="nav">
+          <li class="nav-item">
+            <div id="clock"></div>
           </li>
-          <li>
-            <hr class="dropdown-divider" />
-          </li>
-          <li>
-            <a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a>
+          <li class="nav-item dropdown">
+            <button id="search-button" class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-search"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <input>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
-  </div>
+  </nav>
 </header>

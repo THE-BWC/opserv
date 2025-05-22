@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/.idea/dev-user.iml" filepath="$USER_HOME$/.idea/dev-user.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/opserv.iml" filepath="$PROJECT_DIR$/.idea/opserv.iml" />
     </modules>
   </component>
