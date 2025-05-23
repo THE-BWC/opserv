@@ -13,6 +13,8 @@ updates:
       github-actions:
         patterns:
           - '*'
+    labels:
+      - 'update'
 
   # Enable version updates for Docker
   - package-ecosystem: 'docker'
@@ -34,6 +36,8 @@ updates:
       docker-python:
         patterns:
           - '*'
+    labels:
+      - 'update'
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the listed directories
@@ -45,6 +49,8 @@ updates:
     # Every weekday
     schedule:
       interval: 'daily'
+    labels:
+      - 'update'
 
   # Enable version updates for Python/Pip - Production
   - package-ecosystem: 'pip'
@@ -59,3 +65,18 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
+    labels:
+      - 'update'
+
+  # Update npm packages
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    groups:
+      npm:
+        update-types:
+          - 'minor'
+          - 'patch'
+    labels:
+      - 'update'
