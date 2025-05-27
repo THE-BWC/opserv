@@ -1,1 +1,49 @@
 {% extends "pages/page.html" %}
+
+{% block primary_content %}
+  <div class="col-md-12 card">
+    <div class="card-body">
+      <h1 class="card-title">Welcome to the Operations Server</h1>
+      <p class="card-text">
+        This is the home page of the Operations Server. Here you can find information about ongoing operations, member activities, and more.
+      </p>
+    </div>
+  </div>
+  <div class="col-md-6 card mt-4">
+    <div id="upcoming_operations" class="card-body p-0">
+      <h4 class="card-title px-3 py-3 mb-0">Upcoming Operations</h4>
+      <div class="accordion" id="gameAccordion">
+        {% for game in games %}
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading-{{ game.id }}">
+              <button class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-{{ game.id }}"
+                      aria-expanded="true"
+                      aria-controls="collapse-{{ game.id }}">
+                <img src="/media/{{ game.icon }}"
+                     alt="{{ game.name }} icon"
+                     class="me-2"
+                     style="width: 30px;
+                            height: 30px;
+                            object-fit: cover" />
+                {{ game.name }}
+              </button>
+            </h2>
+            <div id="collapse-{{ game.id }}"
+                 class="accordion-collapse collapse"
+                 aria-labelledby="heading-{{ game.id }}"
+                 data-bs-parent="#gameAccordion">
+              <div class="accordion-body">
+                <ul>
+                  {% for operation in game.upcoming_operations %}<li>{{ operation.name }} - {{ operation.date }}</li>{% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock primary_content %}

@@ -1,19 +1,7 @@
 <footer>
-  <div class="container d-flex flex-wrap justify-content-between align-items-center py-4">
-    <div class="col-md-4 d-flex align-items-center">
-      <span class="mb-3 mb-md-0 text-body-secondary">2003-{{ YEAR }} <a href="{{ URL }}" class="hover:underline" target="_blank">{{ BRAND_NAME }}</a>. All rights reserved.</span>
+  <div class="container">
+    <div class="d-flex align-items-center">
+      <span class="text-body-secondary text-small">© 2003-2025 WidowMakers. All rights reserved.</span>
     </div>
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex mb-0">
-      {% for social in SOCIALS %}
-        <li class="ms-3">
-          <a href="{{ social.url }}"
-             data-tooltip-target="tooltip-{{ social.icon }}"
-             class="text-body-secondary">
-            <i class="fa fa-{{ social.icon }}"></i>
-            <span class="sr-only">{{ social.name }}</span>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
   </div>
 </footer>

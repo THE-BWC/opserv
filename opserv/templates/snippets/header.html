@@ -1,49 +1,28 @@
 <header class="main-header">
-  <nav class="navbar" role="navigation">
-    <div class="container">
-      <div class="float-start">
-        <a class="navbar-brand" href="#">
-          <img src="https://pao.widowmakers.org/BWC_Logo_FRAMED.svg"
-               alt="WidowMakers"
-               height="40" />
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="{% url 'home' %}">
+      <img src="https://pao.widowmakers.org/BWC_Logo_FRAMED.svg"
+           alt="WidowMakers"
+           height="40" />
+    </a>
+    <div id="clock"></div>
+    <ul class="nav">
+      <li class="nav-item search-dropdown dropdown">
+        <a id="search-button"
+           class="btn search-btn"
+           data-bs-toggle="dropdown"
+           aria-expanded="false"
+           onclick="document.getElementById('search').focus()">
+          <i class="fa fa-search"></i>
         </a>
-      </div>
-      <div class="float-end">
-        <ul class="nav">
-          <li class="nav-item">
-            <div id="clock"></div>
-            <script>
-              function displayEstTime() {
-                document.getElementById("clock").innerHTML = Intl.DateTimeFormat('en', {
-                  timeStyle: "long",
-                  hourCycle: "h24",
-                  timeZone: "America/New_York"
-                }).format(new Date())
-                setTimeout(displayEstTime, 1000)
-              }
-              window.addEventListener("load", (event) => {
-                displayEstTime()
-              });
-            </script>
-          </li>
-          <li class="nav-item search-dropdown dropdown">
-            <a id="search-button"
-               class="btn search-btn"
-               data-bs-toggle="dropdown"
-               aria-expanded="false"
-               onclick="document.getElementById('search').focus()">
-              <i class="fa fa-search"></i>
-            </a>
-            <ul class="dropdown-menu search-menu">
-              <input id="search"
-                     class="search-box form-control"
-                     type="text"
-                     name="search"
-                     placeholder="Search Members, Operations" />
-            </ul>
-          </li>
+        <ul class="dropdown-menu search-menu">
+          <input id="search"
+                 class="search-box form-control"
+                 type="text"
+                 name="search"
+                 placeholder="Search Members, Operations" />
         </ul>
-      </div>
-    </div>
-  </nav>
+      </li>
+    </ul>
+  </div>
 </header>

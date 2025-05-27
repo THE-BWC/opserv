@@ -112,94 +112,39 @@ body {
   font-size: 0.75rem;
   line-height: 1rem;
 }
-aside {
-  #member-information {
-    width: 20rem;
-
-    .avatar {
-      display: block;
-      overflow: hidden;
-    }
-
-    div p {
-      margin: 0;
-    }
-  }
-
-  #navigation {
-    margin-bottom: 0;
-    padding: 0;
-    width: 20rem;
-    list-style: none;
-    border-radius: 0.25rem;
-
-    li {
-      margin-bottom: 0;
-      padding: 0;
-      list-style: none;
-
-      a {
-        color: $white;
-        text-decoration: none;
-        padding: 10px 15px;
-        display: block;
-        border-radius: 0.25rem;
-
-        &:hover {
-          background-color: $primary;
-          color: $white;
-        }
-      }
-    }
-  }
-}
 .main-header {
   position: relative;
   z-index: 1050;
   background-color: $dark;
+  padding: 0;
 
-  .navbar {
-    min-height: 50px;
-    padding: 0;
+  div:first-child {
+    height: 50px;
+    line-height: 20px;
+  }
 
-    .navbar-brand {
-      display: block;
-      height: 50px;
+  .search-dropdown {
+    .show {
+      background-color: $gray-800;
+
+      i {
+        color: $primary;
+      }
     }
 
-    .float-end {
-      .nav > .nav-item {
-        height: 50px;
-        min-width: 50px;
-        line-height: 20px;
-      }
-      #clock {
-        padding: 15px;
-      }
-      .search-dropdown {
-        .show {
-          background-color: $gray-800;
+    a {
+      padding: 15px;
+      border: 0;
+      border-radius: 0;
+      line-height: 20px;
 
-          i {
-            color: $primary;
-          }
-        }
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: $gray-800;
 
-        a {
-          padding: 15px;
-          border: 0;
-          border-radius: 0;
-          line-height: 20px;
-
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: $gray-800;
-
-            i {
-              color: $primary;
-            }
-          }
+        i {
+          color: $primary;
         }
       }
     }
@@ -207,8 +152,7 @@ aside {
 
   .search-menu {
     position: absolute;
-    left: auto;
-    right: 0;
+    inset: 0 0 auto auto !important;
     width: 280px;
     padding: 0 0 0 0;
     margin: 0;
@@ -237,19 +181,102 @@ aside {
     }
   }
 }
-.main {
-  min-height: calc(100vh - 132px);
+aside {
+  width: 20rem;
+  position: sticky;
 
-  .center-card {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+  #member-information {
+    width: 20rem;
+
+    .avatar {
+      display: block;
+      overflow: hidden;
+    }
+
+    div:first-child {
+      border: var(--bs-border-width) solid var(--bs-border-color);
+    }
+
+    div p {
+      margin: 0;
+    }
   }
 
-  @media (max-width: 768px) {
-    width: 90%;
+  #navigation {
+    margin-bottom: 0;
+    padding: 0;
+    width: 20rem;
+    list-style: none;
+    border-radius: 0.25rem;
+
+    div:first-child {
+      border: var(--bs-border-width) solid var(--bs-border-color);
+    }
+
+    li {
+      margin-bottom: 0;
+      padding: 0;
+      list-style: none;
+
+      a {
+        color: $white;
+        text-decoration: none;
+        padding: 10px 15px;
+        display: block;
+        border-radius: 0.25rem;
+
+        &:hover {
+          background-color: $primary;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+.content {
+  min-height: calc(100vh - 100px);
+
+  #upcoming_operations {
+    .accordion {
+      .accordion-item {
+        border: 0;
+        border-top: var(--bs-accordion-border-width) solid
+          var(--bs-accordion-border-color);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    .accordion-button {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+
+      &:hover {
+        background-color: $primary;
+        color: $white;
+      }
+
+      &:not(.collapsed) {
+        // Decrease contrast of $primary color for active accordion button
+        background-color: $primary;
+        color: $white;
+      }
+
+      &::after {
+        --bs-accordion-btn-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='rgb(255,255,255)'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/></svg>");
+        --bs-accordion-btn-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='rgb(255,255,255)'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708'/></svg>");
+      }
+    }
+  }
+}
+footer {
+  position: relative;
+  z-index: 1050;
+  background-color: $dark;
+  padding: 0;
+
+  div:first-child {
+    height: 50px;
+    line-height: 20px;
   }
 }
