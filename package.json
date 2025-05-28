@@ -2,7 +2,7 @@
   "name": "opserv",
   "version": "0.1.0",
   "devDependencies": {
-    "@babel/core": "^7.27.1",
+    "@babel/core": "^7.27.3",
     "@babel/preset-env": "^7.27.2",
     "@popperjs/core": "^2.10.2",
     "autoprefixer": "^10.4.0",
@@ -14,7 +14,7 @@
     "pixrem": "^5.0.0",
     "postcss": "^8.3.11",
     "postcss-loader": "^8.0.0",
-    "postcss-preset-env": "^10.1.6",
+    "postcss-preset-env": "^10.2.0",
     "sass": "1.89.0",
     "sass-loader": "^16.0.1",
     "webpack": "^5.99.9",
