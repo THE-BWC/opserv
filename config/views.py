@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render
 
 from opserv.games import models as games_models
@@ -17,4 +18,8 @@ def home(request):
     games = [] if not games else sorted(games, key=lambda game: game.name.lower())
 
     # Render the home page with the list of games
-    return render(request, "pages/home.html", {"games": games})
+    return render(
+        request,
+        "pages/home.html",
+        {"games": games, "server_timezone": settings.TIME_ZONE},
+    )

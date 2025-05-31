@@ -5,11 +5,12 @@
     <div class="card-body">
       <h1 class="card-title">Welcome to the Operations Server</h1>
       <p class="card-text">
-        This is the home page of the Operations Server. Here you can find information about ongoing operations, member activities, and more.
+        This is the home page of the Operations Server. Here you can find information about ongoing operations, member
+        activities, and more.
       </p>
     </div>
   </div>
-  <div class="col-md-6 card mt-4">
+  <div class="col-md-12 card mt-4">
     <div id="upcoming_operations" class="card-body p-0">
       <h4 class="card-title px-3 py-3 mb-0">Upcoming Operations</h4>
       <div class="accordion" id="gameAccordion">
@@ -37,7 +38,45 @@
                  data-bs-parent="#gameAccordion">
               <div class="accordion-body">
                 <ul>
-                  {% for operation in game.upcoming_operations %}<li>{{ operation.name }} - {{ operation.date }}</li>{% endfor %}
+                  {% for operation in game.upcoming_operations %}
+                    <li class="col-md-12 d-flex flex-column operation-container">
+                      <div class="col-md-12 d-flex">
+                        <div class="col-md-7 col-sm-12">
+                          <h2 class="operation-title">{{ operation.name }}</h2>
+                          <div class="operation-info">
+                            <div class="operation-attribute"
+                                 style="background-color: #{{ operation.type_id.color_hex }}">
+                              <span>{{ operation.type_id }}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-5 col-sm-12 text-end">
+                          <strong>
+                            <span id="local-time-{{ operation.id }}"
+                                  class="operation-time"
+                                  data-start-time="{{ operation.start_date|date:'c' }}"></span>
+                          </strong>
+                          <br />
+                          <span id="timezone-{{ operation.id }}"></span>
+                          <span id="server-time-{{ operation.id }}" class="text-gray-500"></span>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mt-4 operation-control">
+                        <a href="{% url "home" %}">
+                          <button class="btn btn-block btn-secondary">Clone</button>
+                        </a>
+                        <a href="{% url "home" %}">
+                          <button class="btn btn-block btn-secondary">Edit</button>
+                        </a>
+                        <a href="{% url "home" %}">
+                          <button class="btn btn-block btn-secondary">Squads</button>
+                        </a>
+                        <a href="{% url "home" %}">
+                          <button class="btn btn-block btn-secondary">Delete</button>
+                        </a>
+                      </div>
+                    </li>
+                  {% endfor %}
                 </ul>
               </div>
             </div>
@@ -45,5 +84,75 @@
         {% endfor %}
       </div>
     </div>
+    <script>
+      function formatOperationStartTime(startTime, operationId) {
+        const startDate = new Date(startTime);
+        const now = new Date();
+
+        // Get the browser's local timezone
+        const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+        // Get the browser's local date strings
+        const startDateString = startDate.toLocaleDateString([], {
+          timeZone: localTimezone
+        });
+        const nowDateString = now.toLocaleDateString([], {
+          timeZone: localTimezone
+        });
+
+        // Calculate tomorrow's date in the browser's timezone
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowDateString = tomorrow.toLocaleDateString([], {
+          timeZone: localTimezone
+        });
+
+        const isToday = startDateString === nowDateString;
+        const isTomorrow = startDateString === tomorrowDateString;
+
+        // Format the time based on whether it's today, tomorrow, or another day
+        const timeString = isToday ?
+          `Today at ${startDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}` :
+          isTomorrow ?
+          `Tomorrow at ${startDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}` :
+          `${startDate.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })} at ${startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+
+        // Format the server timezone using the passed variable
+        const serverTimezone = startDate.toLocaleTimeString('en', {
+          timeZone: "{{ server_timezone }}",
+          hourCycle: "h24",
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZoneName: 'short'
+        });
+
+        // Update the DOM
+        const operationTimeElement = document.getElementById(`local-time-${operationId}`);
+        const timezoneElement = document.getElementById(`timezone-${operationId}`);
+        const serverTimeElement = document.getElementById(`server-time-${operationId}`)
+
+        if (operationTimeElement && timezoneElement) {
+          operationTimeElement.textContent = timeString;
+          timezoneElement.textContent = `${localTimezone}`;
+          serverTimeElement.textContent = `(or ${serverTimezone})`
+        }
+      }
+
+      // This function formats and updates the operation start time for all operations
+      function updateOperationTimes() {
+        const operationElements = document.querySelectorAll('[data-start-time]');
+
+        operationElements.forEach((element) => {
+          const startTime = element.getAttribute('data-start-time');
+          const operationId = element.id.split('-').pop();
+          formatOperationStartTime(startTime, operationId);
+        });
+      }
+
+      // Initialize the clock display when the window loads
+      window.addEventListener('load', (event) => {
+        updateOperationTimes();
+      });
+    </script>
   </div>
 {% endblock primary_content %}

@@ -21,7 +21,9 @@ class GameQuerySet(models.QuerySet):
         from opserv.operations.models import Operation
 
         now = timezone.now()
-        upcoming_ops = Operation.objects.filter(start_date__gte=now)
+        upcoming_ops = Operation.objects.filter(start_date__gte=now).select_related(
+            "type_id",
+        )
         return (
             self.annotate(
                 upcoming_ops_count=Count(
