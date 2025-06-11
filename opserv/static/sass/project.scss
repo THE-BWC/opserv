@@ -94,8 +94,7 @@ body {
   height: 100%;
   overflow-y: scroll;
   position: relative;
-  background: url('https://the-bwc.com/PAO/Forum_Header_Background.png')
-    no-repeat fixed center top;
+  background: url('../images/background.png') no-repeat fixed center top;
   background-size: cover;
 }
 .text-muted li p {
@@ -306,6 +305,10 @@ aside {
       font-weight: bold;
       color: $white;
       border-radius: 3px;
+
+      span {
+        margin: 0 3px;
+      }
     }
 
     .operation-control {

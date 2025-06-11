@@ -85,6 +85,7 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "drf_spectacular",
     "webpack_loader",
+    "tinymce",
 ]
 
 LOCAL_APPS = [
@@ -92,6 +93,8 @@ LOCAL_APPS = [
     # Your stuff: custom apps go here
     "opserv.operations",
     "opserv.games",
+    "opserv.ranks",
+    "opserv.billets",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

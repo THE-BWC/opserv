@@ -10,7 +10,7 @@ from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
-from .views import home
+from opserv.operations.views import home
 
 urlpatterns = [
     path("", home, name="home"),
@@ -26,6 +26,8 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     # ...
+    # TinyMCE
+    path("tinymce/", include("tinymce.urls")),
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
