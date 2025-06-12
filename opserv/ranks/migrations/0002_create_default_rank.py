@@ -3,7 +3,6 @@ from django.db import migrations
 
 def create_default_rank(apps, schema_editor):
     rank = apps.get_model('ranks', 'Rank')
-    rank.objects.all().delete()
     rank.objects.create(
         name='Recruit',
         description='<ol><li>Interest in becoming a member of Black Widow Company</li><li>Post a complete recruitment application in the recruitment area of the forums</li><li>Registered on OpServ</li><li>Activated TeamSpeak</li></ol>',
