@@ -2,12 +2,13 @@
 
 import django.db.models.deletion
 from django.db import migrations, models
+import opserv.ranks.models
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ranks', '0002_alter_rank_description'),
+        ('ranks', '0002_create_default_rank'),
         ('users', '0001_initial'),
     ]
 
@@ -15,6 +16,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='rank',
-            field=models.ForeignKey(default=2, on_delete=django.db.models.deletion.PROTECT, related_name='user_set', to='ranks.rank', verbose_name='Rank'),
+            field=models.ForeignKey(
+                default=opserv.users.models.get_default_rank_id,
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='user_set',
+                to='ranks.rank',
+                verbose_name='Rank'
+            ),
         ),
     ]

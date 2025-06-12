@@ -38,7 +38,7 @@ class User(AbstractUser):
         verbose_name=_("Rank"),
         on_delete=PROTECT,
         related_name="user_set",
-        default=get_default_rank_id,
+        default=get_default_rank_id
     )
 
     def get_absolute_url(self) -> str:
