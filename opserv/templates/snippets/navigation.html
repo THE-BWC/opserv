@@ -6,10 +6,10 @@
       <div class="d-flex flex-row">
         <img class="avatar me-2" src="" alt="" height="96" width="96" />
         <div>
-          <p class="fw-bold" style="color: yellow">{{ user.username }}</p>
+          <p class="fw-bold" style="color: {{ user.rank.color_hex }}">{{ user.username }}</p>
           <p class="text-xs text-gray-300">BWC S-1 2IC</p>
           <p class="text-xs text-gray-300">Last Active: 14 May 2019</p>
-          <p class="text-xs text-gray-300">Rank: E-4</p>
+          <p class="text-xs text-gray-300">Rank: {{ user.rank.name }}</p>
           <p class="text-xs text-gray-300">Billeted Rank: O-5</p>
           <p class="text-xs text-gray-300">Primary: ARMA 3</p>
           <p class="text-xs text-gray-300">Command: Infantry Platoon</p>

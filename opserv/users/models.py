@@ -6,6 +6,7 @@ from django.db.models import ForeignKey
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from opserv.billets.models import Billet
 from opserv.ranks.models import Rank
 
 
@@ -38,6 +39,14 @@ class User(AbstractUser):
         on_delete=PROTECT,
         default=1,
         verbose_name=_("Rank"),
+        related_name="user_set",
+    )
+    billet = ForeignKey(
+        Billet,
+        on_delete=PROTECT,
+        blank=True,
+        null=True,
+        verbose_name=_("Billet"),
         related_name="user_set",
     )
 

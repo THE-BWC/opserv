@@ -29,12 +29,17 @@ class UserAdmin(auth_admin.UserAdmin):
                     "is_active",
                     "is_staff",
                     "is_superuser",
-                    "groups",
-                    "user_permissions",
+                    "rank",
+                    "billet",
                 ),
             },
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["username", "name", "is_superuser"]
+    list_display = ["username", "name", "rank", "billet", "is_superuser"]
     search_fields = ["name"]
+
+    def get_readonly_fields(self, request, obj=None):
+        # Make the billet field read-only
+        readonly_fields = super().get_readonly_fields(request, obj)
+        return repr((*readonly_fields, "billet"))
