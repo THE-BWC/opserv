@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Permission
 from django.db import models
 from tinymce.models import HTMLField
 
@@ -53,13 +54,20 @@ class Billet(models.Model):
         related_name="billets",
     )
 
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         user_model,
         on_delete=models.SET_NULL,
-        related_name="billets",
+        related_name="billet",
         verbose_name="User",
         blank=True,
         null=True,
+    )
+
+    permissions = models.ManyToManyField(
+        Permission,
+        related_name="billets",
+        blank=True,
+        help_text="Permissions associated with this billet.",
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -93,15 +101,3 @@ class Billet(models.Model):
         if request:
             self.updated_by = request.user
         super().save(*args, **kwargs)
-
-        # Backfill the user's billet field
-        if self.user:
-            if self.user.billet != self:
-                self.user.billet = self
-                self.user.save()
-        else:
-            # Remove the reference if user is set to None
-            for user in self.user_set.all():
-                if user.billet == self:
-                    user.billet = None
-                    user.save()

@@ -6,6 +6,11 @@ from .models import BilletOffice
 
 @admin.register(Billet)
 class BilletAdmin(admin.ModelAdmin):
+    """
+    Admin interface for managing Billet objects.
+    """
+
+    save_as = True
     fieldsets = (
         (
             None,
@@ -17,6 +22,14 @@ class BilletAdmin(admin.ModelAdmin):
                     "game",
                     "rank",
                     "user",
+                ),
+            },
+        ),
+        ("Permissions", {"fields": ("permissions",)}),
+        (
+            "Information",
+            {
+                "fields": (
                     "created_by",  # Read-only field
                     "updated_by",  # Read-only field
                 ),
@@ -32,16 +45,10 @@ class BilletAdmin(admin.ModelAdmin):
             },
         ),
     )
-    list_display = (
-        "name",
-        "office",
-        "game",
-        "user",
-        "updated_at",
-        "updated_by",
-    )
-    search_fields = ("name", "description")
-    list_filter = ("created_at", "updated_at")
+    list_display = ["name", "office", "game", "user", "updated_at", "updated_by"]
+    search_fields = ["name", "description"]
+    list_filter = ["created_at", "updated_at"]
+    filter_horizontal = ["permissions"]
 
     def save_model(self, request, obj, form, change):
         # Automatically set created_by and updated_by
