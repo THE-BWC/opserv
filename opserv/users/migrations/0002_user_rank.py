@@ -2,7 +2,6 @@
 
 import django.db.models.deletion
 from django.db import migrations, models
-from opserv.users.models import get_default_rank_id
 
 
 class Migration(migrations.Migration):
@@ -17,7 +16,7 @@ class Migration(migrations.Migration):
             model_name='user',
             name='rank',
             field=models.ForeignKey(
-                default=get_default_rank_id,
+                default=1,
                 on_delete=django.db.models.deletion.PROTECT,
                 related_name='user_set',
                 to='ranks.rank',

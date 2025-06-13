@@ -6,20 +6,20 @@ from django.db.models import ForeignKey
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from opserv.ranks.models import Rank
 
-def get_default_rank_id() -> int | None:
+
+def get_default_rank_id() -> int:
     """Get the default rank ID.
 
     Returns:
-        int: Default rank ID, or None if not found.
+        int: Default rank ID, or 1 if not found.
 
     """
-    from opserv.ranks.models import Rank
-
     try:
         return Rank.objects.get(is_default=True).id
     except ObjectDoesNotExist:
-        return None
+        return 1
 
 
 class User(AbstractUser):
@@ -34,9 +34,10 @@ class User(AbstractUser):
     first_name = None  # type: ignore[assignment]
     last_name = None  # type: ignore[assignment]
     rank = ForeignKey(
-        "ranks.Rank",
-        verbose_name=_("Rank"),
+        Rank,
         on_delete=PROTECT,
+        default=1,
+        verbose_name=_("Rank"),
         related_name="user_set",
     )
 
