@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "pages/page.html" %}
 
 {% load crispy_forms_tags %}
 
 {% block title %}
-  {{ user.username }}
+  Settings - {{ object.username }}
 {% endblock title %}
-{% block content %}
+{% block primary_content %}
   <h1>{{ user.username }}</h1>
   <form class="form-horizontal"
         method="post"
@@ -18,4 +18,4 @@
       </div>
     </div>
   </form>
-{% endblock content %}
+{% endblock primary_content %}
