@@ -26,6 +26,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     # ...
+    path("ranks/", include("opserv.ranks.urls", namespace="ranks")),
     # TinyMCE
     path("tinymce/", include("tinymce.urls")),
     # Media files

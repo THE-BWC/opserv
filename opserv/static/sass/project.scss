@@ -232,6 +232,11 @@ aside {
           background-color: $primary;
           color: $white;
         }
+
+        &.active {
+          background-color: $primary;
+          color: $white;
+        }
       }
     }
   }
@@ -316,8 +321,23 @@ aside {
     }
 
     .operation-control {
+      .btn:hover {
+        color: var(--bs-btn-hover-color);
+        background-color: $primary;
+      }
       a {
         text-decoration: none;
+      }
+    }
+  }
+
+  .ranks-container {
+    .rank-item {
+      padding: 1rem;
+      border-top: 1px solid #495057;
+
+      &:nth-child(2n) {
+        background-color: #2a2a2a;
       }
     }
   }
