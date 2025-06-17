@@ -1,9 +1,11 @@
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from opserv.games import models as games_models
 
 
+@login_required
 def home(request):
     """
     Home view that renders the home page.
