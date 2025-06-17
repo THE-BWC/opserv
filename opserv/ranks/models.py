@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Permission
 from django.db import models
 from tinymce.models import HTMLField
 
@@ -23,11 +24,11 @@ class Rank(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    users = models.ManyToManyField(
-        user_model,
+    permissions = models.ManyToManyField(
+        Permission,
         related_name="ranks",
         blank=True,
-        help_text="Users who have this rank.",
+        help_text="Permissions associated with this rank.",
     )
 
     class Meta:
@@ -47,4 +48,8 @@ class Rank(models.Model):
     def save(self, *args, **kwargs):
         if not self.color_hex.startswith("#"):
             self.color_hex = "#" + self.color_hex
+        if self.is_default:
+            Rank.objects.filter(is_default=True).exclude(pk=self.pk).update(
+                is_default=False,
+            )
         super().save(*args, **kwargs)

@@ -1,0 +1,28 @@
+{% extends "page.html" %}
+
+{% load static %}
+
+{% block title %}
+  Rank List
+{% endblock title %}
+{% block primary_content %}
+  <div class="col-md-12 d-flex flex-column ranks-container">
+    <div class="card">
+      <div class="card-body p-0">
+        <h2 class="card-title p-3 mb-0">Rank List</h2>
+        {# Show a list of all the ranks in the ranks table #}
+        {% for rank in ranks %}
+          <div class="card-text d-flex flex-column rank-item">
+            <div class="d-flex flex-row">
+              <h4 style="color: {{ rank.color_hex }}">{{ rank.name }}</h4>
+              <img src="{{ rank.fs_icon.url }}"
+                   alt="{{ rank.name }} icon"
+                   class="rank-icon ms-auto" />
+            </div>
+            <div>{{ rank.description|safe }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock primary_content %}

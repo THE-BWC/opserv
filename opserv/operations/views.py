@@ -20,6 +20,10 @@ def home(request):
     # Render the home page with the list of games
     return render(
         request,
-        "pages/home.html",
-        {"games": games, "server_timezone": settings.TIME_ZONE},
+        "home.html",
+        {
+            "games": games,
+            "server_timezone": settings.TIME_ZONE,
+            "current_path": request.path,
+        },
     )

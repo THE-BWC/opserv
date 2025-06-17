@@ -9,19 +9,6 @@ from django.utils.translation import gettext_lazy as _
 from opserv.ranks.models import Rank
 
 
-def get_default_rank_id() -> int:
-    """Get the default rank ID.
-
-    Returns:
-        int: Default rank ID, or 1 if not found.
-
-    """
-    try:
-        return Rank.objects.get(is_default=True).id
-    except ObjectDoesNotExist:
-        return 1
-
-
 class User(AbstractUser):
     """
     Default custom user model for OpServ.
@@ -36,9 +23,9 @@ class User(AbstractUser):
     rank = ForeignKey(
         Rank,
         on_delete=PROTECT,
-        default=1,
+        related_name="users",
         verbose_name=_("Rank"),
-        related_name="user_set",
+        default=1,  # Default to the first rank
     )
 
     def get_absolute_url(self) -> str:
@@ -49,3 +36,27 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"username": self.username})
+
+    def has_perm(self, perm, obj=None):
+        # Check default permissions
+        if super().has_perm(perm, obj):
+            return True
+
+        # Check rank permissions
+        if self.rank and perm in self.rank.permissions.values_list(
+            "codename",
+            flat=True,
+        ):
+            return True
+
+        # Check billet permissions
+        try:
+            if self.billet and perm in self.billet.permissions.values_list(
+                "codename",
+                flat=True,
+            ):
+                return True
+        except ObjectDoesNotExist:
+            pass
+
+        return False

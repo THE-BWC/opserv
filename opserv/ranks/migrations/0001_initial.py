@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('order', models.PositiveIntegerField(default=0)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('users', models.ManyToManyField(blank=True, help_text='Users who have this rank.', related_name='ranks', to=settings.AUTH_USER_MODEL)),
+                ('permissions', models.ManyToManyField(blank=True, help_text='Permissions associated with this rank.', related_name='ranks', to='auth.permission'))
             ],
             options={
                 'verbose_name': 'Rank',

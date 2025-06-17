@@ -4,12 +4,17 @@
     <div class="d-flex flex-column bg-dark px-2 py-3 rounded-3">
       <h5 class="text-center text-white pb-2">Member Information</h5>
       <div class="d-flex flex-row">
-        <img class="avatar me-2" src="" alt="" height="96" width="96" />
+        <img class="avatar me-2"
+             src="{{ user.rank.icon.url }}"
+             alt="Rank Icon"
+             height="96px"
+             width="96px" />
+        {#  User details  #}
         <div>
-          <p class="fw-bold" style="color: yellow">{{ user.username }}</p>
+          <p class="fw-bold" style="color: {{ user.rank.color_hex }}">{{ user.username }}</p>
           <p class="text-xs text-gray-300">BWC S-1 2IC</p>
           <p class="text-xs text-gray-300">Last Active: 14 May 2019</p>
-          <p class="text-xs text-gray-300">Rank: E-4</p>
+          <p class="text-xs text-gray-300">Rank: {{ user.rank.name }}</p>
           <p class="text-xs text-gray-300">Billeted Rank: O-5</p>
           <p class="text-xs text-gray-300">Primary: ARMA 3</p>
           <p class="text-xs text-gray-300">Command: Infantry Platoon</p>
@@ -22,21 +27,32 @@
   <div id="navigation" class="flex items-center p-4 px-3">
     <div class="d-flex flex-column bg-dark px-2 py-3 rounded-3">
       <h5 class="text-center text-white">My Menu</h5>
+      <hr class="text-gray-500 my-2 mx-0" />
+      {#  Navigation links  #}
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'home' %}">Dashboard</a>
+          <a class="nav-link{% if current_path == '/' %} active{% endif %}"
+             href="{% url 'home' %}">Dashboard</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'about' %}">My Jacket</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Ranks</a>
+          <a class="nav-link{% if current_path == '/ranks/list/' %} active{% endif %}"
+             href="{% url 'ranks:rank_list' %}">Ranks</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="">Awards</a>
         </li>
+        <li>
+          <hr class="text-gray-500 my-2 mx-0" />
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Taskforces</a>
+          <a class="nav-link"
+             href="{% url 'users:detail' username=user.username %}">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
         </li>
       </ul>
     </div>
