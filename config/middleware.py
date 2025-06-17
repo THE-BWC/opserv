@@ -10,6 +10,9 @@ EXEMPT_URLS = [
     "/api/",
     "/accounts/confirm-email/",
     "/accounts/discord/",
+    "/403/",
+    "404/",
+    "/500/",
 ]
 EXEMPT_VIEWS = ["account_login", "account_logout", "account_signup"]
 

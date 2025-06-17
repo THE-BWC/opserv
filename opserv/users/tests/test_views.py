@@ -8,6 +8,7 @@ from django.contrib.messages.middleware import MessageMiddleware
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.http import HttpRequest
 from django.http import HttpResponseRedirect
+from django.template.loader import render_to_string
 from django.test import RequestFactory
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -99,3 +100,28 @@ class TestUserDetailView:
         assert isinstance(response, HttpResponseRedirect)
         assert response.status_code == HTTPStatus.FOUND
         assert response.url == f"{login_url}?next=/fake-url/"
+
+
+class TestAlertMessage:
+    def dummy_get_response(self, request: HttpRequest):
+        return None
+
+    def test_alert_message_rendered(self, user: User, rf: RequestFactory):
+        request = rf.get("/fake-url/")
+        request.user = user
+
+        # Add the session/message middleware to the request
+        SessionMiddleware(self.dummy_get_response).process_request(request)
+        MessageMiddleware(self.dummy_get_response).process_request(request)
+
+        # Add a message to the request
+        messages.info(request, "This is a test alert message.")
+        response = render_to_string(
+            "page.html",
+            {
+                "request": request,
+                "user": request.user,
+                "messages": messages.get_messages(request),  # Pass messages here
+            },
+        )
+        assert "This is a test alert message." in response
