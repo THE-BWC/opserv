@@ -38,6 +38,8 @@ updates:
           - '*'
     labels:
       - 'update'
+      - 'dependencies'
+      - 'docker'
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the listed directories
@@ -51,6 +53,8 @@ updates:
       interval: 'daily'
     labels:
       - 'update'
+      - 'dependencies'
+      - 'docker'
 
   # Enable version updates for Python/Pip - Production
   - package-ecosystem: 'pip'
@@ -67,6 +71,8 @@ updates:
           - 'patch'
     labels:
       - 'update'
+      - 'dependencies'
+      - 'python'
 
   # Update npm packages
   - package-ecosystem: 'npm'
@@ -80,3 +86,5 @@ updates:
           - 'patch'
     labels:
       - 'update'
+      - 'dependencies'
+      - 'javascript'
