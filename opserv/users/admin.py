@@ -53,7 +53,8 @@ class UserAdmin(auth_admin.UserAdmin):
         description="Billet",
     )
     def get_billet(self, obj):
-        if obj.billet:
-            url = reverse("admin:billets_billet_change", args=[obj.billet.id])
-            return format_html('<a href="{}">{}</a>', url, obj.billet.name)
-        return "No billet assigned"
+        billet = getattr(obj, "billet", None)
+        if not billet:
+            return None
+        url = reverse("admin:billets_billet_change", args=[billet.id])
+        return format_html('<a href="{}">{}</a>', url, billet.name)

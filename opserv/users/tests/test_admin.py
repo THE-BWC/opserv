@@ -8,7 +8,10 @@ from django.contrib.auth.models import AnonymousUser
 from django.urls import reverse
 from pytest_django.asserts import assertRedirects
 
+from opserv.billets.tests.factories import BilletFactory
+from opserv.users.admin import UserAdmin
 from opserv.users.models import User
+from opserv.users.tests.factories import UserFactory
 
 
 class TestUserAdmin:
@@ -63,3 +66,24 @@ class TestUserAdmin:
         # The `admin` login view should redirect to the `allauth` login view
         target_url = reverse(settings.LOGIN_URL) + "?next=" + request.path
         assertRedirects(response, target_url, fetch_redirect_response=False)
+
+    @pytest.mark.django_db
+    def test_get_billet_with_billet(self):
+        billet = BilletFactory(name="Commander")
+        user = UserFactory(username="test_user")
+        user.billet = billet
+        user.save()
+        admin = UserAdmin(User, None)  # type: ignore[call-arg]
+        result = admin.get_billet(user)
+        url = reverse("admin:billets_billet_change", args=[billet.id])
+        assert f'href="{url}"' in result
+        assert "Commander" in result
+
+    @pytest.mark.django_db
+    def test_get_billet_returns_none(self):
+        user = UserFactory(username="test_user")
+        user.billet = None
+        user.save()
+        admin = UserAdmin(User, None)  # type: ignore[call-arg]
+        result = admin.get_billet(user)
+        assert result is None

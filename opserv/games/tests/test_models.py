@@ -4,7 +4,7 @@ import pytest
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
-from .models import Game
+from opserv.games.models import Game
 
 
 @pytest.mark.django_db
