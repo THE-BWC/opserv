@@ -7,6 +7,7 @@ EXEMPT_URLS = [
     reverse(settings.LOGIN_URL),
     "/admin/",
     "/static/",
+    "/api/",
     "/accounts/confirm-email/",
     "/accounts/discord/",
 ]
