@@ -59,13 +59,16 @@ jobs:
       - name: Run DB Migrations
         run: docker compose -f docker-compose.local.yml run --rm django python manage.py migrate
 
-      - name: Run Django Tests
-        run: docker compose -f docker-compose.local.yml run django pytest --cov --junitxml=junit.xml -o junit_family=legacy
+      - name: Run Django Coverage
+        run: docker compose -f docker-compose.local.yml run django pytest --cov --cov-branch --cov-report=xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Run Django Tests
+        run: docker compose -f docker-compose.local.yml run django pytest --cov --junitxml=junit.xml -o junit_family=legacy
 
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
