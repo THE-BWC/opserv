@@ -1,15 +1,15 @@
-{% extends "base.html" %}
+{% extends "errors/error_base.html" %}
 
 {% block title %}
-  Page not found
+  Forbidden (403)
 {% endblock title %}
 {% block content %}
-  <h1>Page not found</h1>
+  <h1>Forbidden (403)</h1>
   <p>
     {% if exception %}
       {{ exception }}
     {% else %}
-      This is not the page you were looking for.
+      You're not allowed to access this page.
     {% endif %}
   </p>
 {% endblock content %}

@@ -36,3 +36,15 @@ logs *args:
 # manage: Executes `manage.py` command.
 manage +args:
     @docker compose run --rm django python ./manage.py {{args}}
+
+# pytest: Run pytest in the Django container.
+pytest *args:
+    @docker compose run --rm django pytest {{args}}
+
+# coverage: Run coverage in the Django container.
+coverage *args:
+    @docker compose run --rm django coverage run -m pytest {{args}}
+
+# report: Generate coverage report.
+report *args:
+    @docker compose run --rm django coverage report -m {{args}}
