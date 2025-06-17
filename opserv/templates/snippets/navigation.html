@@ -47,10 +47,10 @@
         <li>
           <hr class="text-gray-500 my-2 mx-0" />
         </li>
-        {#        <li class="nav-item">#}
-        {#          <a class="nav-link"#}
-        {#             href="{% url 'users:detail' username=user.username %}">Settings</a>#}
-        {#        </li>#}
+        <li class="nav-item">
+          <a class="nav-link"
+             href="{% url 'users:detail' username=user.username %}">Settings</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
         </li>
