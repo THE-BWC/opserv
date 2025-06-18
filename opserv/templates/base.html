@@ -42,10 +42,10 @@
     {% endblock javascript %}
   </head>
   <body class="{% block bodyclass %}{% endblock bodyclass %}">
-    <!-- djlint:off -->
-            {% block page %}{% endblock page %}
-            {% block modal %}{% endblock modal %}
-    <!-- djlint:on -->
+    {# djlint:off #}
+    {% block page %}{% endblock page %}
+    {% block modal %}{% endblock modal %}
+    {# djlint:on #}
     {% block inline_javascript %}
       {% comment %}
     Script tags with only code, no src (defer by default). To run
