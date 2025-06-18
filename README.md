@@ -2,8 +2,8 @@
 
 Operations Server for Gaming Communities!
 
-[![Django](https://img.shields.io/badge/django-4.2.9-blue.svg?logo=django)](https://www.djangoproject.com/)
-[![Python](https://img.shields.io/badge/python-3.11-blue.svg?logo=python)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/django-5.2.3-blue.svg?logo=django)](https://www.djangoproject.com/)
+[![Python](https://img.shields.io/badge/python-3.13-blue.svg?logo=python)](https://www.python.org/)
 [![codecov](https://codecov.io/gh/THE-BWC/opserv/branch/main/graph/badge.svg?token=j4qIAObqWm)](https://codecov.io/gh/THE-BWC/opserv)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/THE-BWC/opserv/main.svg)](https://results.pre-commit.ci/latest/github/THE-BWC/opserv/main)
 [![CI](https://github.com/THE-BWC/opserv/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/THE-BWC/opserv/actions/workflows/ci.yml)
