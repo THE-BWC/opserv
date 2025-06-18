@@ -13,6 +13,7 @@ EXEMPT_URLS = [
     "/403/",
     "404/",
     "/500/",
+    "/__debug__/",
 ]
 EXEMPT_VIEWS = ["account_login", "account_logout", "account_signup"]
 
