@@ -7,7 +7,7 @@ from opserv.games.models import Game
 
 class GameFactory(DjangoModelFactory[Game]):
     name = Faker("name")
-    tag = Faker("word")
+    tag = Faker("bothify", text="????")
     icon = SimpleUploadedFile("icon.png", b"file_content", content_type="image/png")
 
     class Meta:
