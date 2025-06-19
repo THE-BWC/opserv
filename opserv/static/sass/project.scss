@@ -26,6 +26,7 @@ $gray-600: #6c757d;
 $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
+$gray-1000: #161616;
 
 ////////////
 // Alerts //
@@ -115,6 +116,38 @@ body {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.entrance {
+  .main {
+    max-width: 450px;
+    background: $gray-1000;
+    padding: 3rem 1.25rem;
+
+    .logo {
+      display: block;
+      max-width: 400px;
+      margin-bottom: 2.75rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-control {
+      height: 44px;
+      border-radius: 0.25rem;
+    }
+
+    label {
+      font-weight: bold;
+      color: $white;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
 .main-header {
   position: relative;
   z-index: 1050;
