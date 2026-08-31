@@ -30,12 +30,12 @@
             {#   <h1>My page content</h1> #}
             {#   <p>Some content for the page</p> #}
             {# {% endblock %} #}
-            {% block primary_content %}
-            {% endblock primary_content %}
-          </div>
-        {% endblock primary %}
-      </div>
-    </div>
-  </div>
-  {% include "snippets/footer.html" %}
+          {% block primary_content %}
+          {% endblock primary_content %}
+        </div>
+{% endblock primary %}
+</div>
+</div>
+</div>
+{% include "snippets/footer.html" %}
 {% endblock page %}
